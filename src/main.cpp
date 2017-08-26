@@ -166,8 +166,8 @@ void serial_flush(){
 }
 
 void debug(const char* c){
-	if(DEBUG){
+    if(DEBUG){
         Serial.print("D: ");
-		Serial.println(c);
-	}
+        Serial.println(c);
+    }
 }
