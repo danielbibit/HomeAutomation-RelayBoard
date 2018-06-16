@@ -4,9 +4,6 @@
 
 SoftwareSerial mySerial(8, 7); //RX/TX
 
-const String BOARD_NAME = "exordial_board";
-const int BOARD_VERSION = 0;
-
 const bool DEBUG = true;
 
 const int out_pins[4] = {A5, A4, A3, A2};
@@ -21,7 +18,8 @@ String message[10];
 
 //Function prototypes
 String generate_status();
-String json_builder(String action, String argument);
+String generate_error(String error);
+
 void switch_pin(int pin, int mode);
 void verify_input();
 bool parse_command(String s);
@@ -45,8 +43,7 @@ void setup() {
 
     serial_flush();
 
-    mySerial.println(json_builder("alive", "0"));
-    mySerial.println(json_builder("status", generate_status()));
+    mySerial.println(generate_status());
     debug("Alive!");
 }
 
@@ -59,16 +56,17 @@ void loop() {
         Serial.println(buffer_string);
     }
 
+    // version;sender;action;value
     if(!buffer_string.equals("")){
         if(parse_command(buffer_string)){
             debug("I'm a command !");
 
             if(message[0] != "0"){
-                mySerial.println(json_builder("error", "Incompatible version"));
+                //Wrong Version
             }else if(message[1] == "server"){
                 if(message[2] == "status"){
                     mySerial.flush();
-                    mySerial.println(json_builder("status", generate_status()));
+                    mySerial.println(generate_status());
                 }else if(message[2] == "toggle"){
                     switch_pin(message[3].toInt(), 3);
                 }else if(message[2] == "on"){
@@ -76,10 +74,10 @@ void loop() {
                 }else if(message[2] == "off"){
                     switch_pin(message[3].toInt(), 0);
                 }else{
-                    mySerial.println(json_builder("error", "Command not valid"));
+                    //Parsing Error
                 }
             }else{
-                mySerial.println(json_builder("error", "Sender not recognized"));
+                //Wrong Sender
             }
         }
 
@@ -91,7 +89,7 @@ void loop() {
 }
 
 String generate_status(){
-    String string = "";
+    String string = "0;board;status;"; //VAR
 
     for(int i = 0; i < 4; i++){
         string.concat(states[i]);
@@ -101,16 +99,10 @@ String generate_status(){
     return string;
 }
 
-String json_builder(String action, String argument){
-    String string = "{\"version\":";
-    string.concat(BOARD_VERSION);
-    string.concat(", \"name\" : \"");
-    string.concat(BOARD_NAME);
-    string.concat("\", \"action\" : \"");
-    string.concat(action);
-    string.concat("\", \"argument\" : \"");
-    string.concat(argument);
-    string.concat("\"}");
+String generate_error(String error){
+    String string = "0;board;error;"; //VAR
+
+    string.concat(error);
 
     return string;
 }
@@ -129,7 +121,8 @@ void switch_pin(int pin, int mode){
         debounce[pin] = millis();
 
         mySerial.flush();
-        mySerial.println(json_builder("status", generate_status()));
+        mySerial.println(generate_status());
+
     }
 }
 

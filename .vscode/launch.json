@@ -1,14 +1,29 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+
+// PIO Unified Debugger
+//
+// Documentation: http://docs.platformio.org/page/plus/debugging.html
+// Configuration: http://docs.platformio.org/page/projectconf/section_env_debug.html
+
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "gdb",
+            "type": "platformio-debug",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
             "name": "PlatformIO Debugger",
-            "target": "c:/Dropbox/Code/Arduino/M1-HomeAutomation/.pioenvs/uno/firmware.elf",
-            "gdbpath": "C:/Users/danie/.platformio/penv/Scripts/piodebuggdb",
-            "autorun": [ "source .pioinit" ]
+            "executable": "/home/daniel/Dropbox/Code/Arduino/Panja/Panja-RelayBoard-New/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
+            "toolchainBinDir": "/home/daniel/.platformio/packages/toolchain-atmelavr/bin",
+            "preLaunchTask": "PlatformIO: Pre-Debug",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "platformio-debug",
+            "request": "launch",
+            "name": "PlatformIO Debugger (Skip Pre-Debug)",
+            "executable": "/home/daniel/Dropbox/Code/Arduino/Panja/Panja-RelayBoard-New/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
+            "toolchainBinDir": "/home/daniel/.platformio/packages/toolchain-atmelavr/bin",
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }
