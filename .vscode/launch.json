@@ -12,8 +12,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PlatformIO Debugger",
-            "executable": "/home/daniel/Dropbox/Code/Arduino/Panja/Panja-RelayBoard-New/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
-            "toolchainBinDir": "/home/daniel/.platformio/packages/toolchain-atmelavr/bin",
+            "executable": "c:/Dropbox/Code/Arduino/Panja/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
+            "toolchainBinDir": "C:/Users/danie/.platformio/packages/toolchain-atmelavr/bin",
             "preLaunchTask": "PlatformIO: Pre-Debug",
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -21,8 +21,8 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PlatformIO Debugger (Skip Pre-Debug)",
-            "executable": "/home/daniel/Dropbox/Code/Arduino/Panja/Panja-RelayBoard-New/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
-            "toolchainBinDir": "/home/daniel/.platformio/packages/toolchain-atmelavr/bin",
+            "executable": "c:/Dropbox/Code/Arduino/Panja/Panja-Module-RelayBoard/.pioenvs/uno/firmware.elf",
+            "toolchainBinDir": "C:/Users/danie/.platformio/packages/toolchain-atmelavr/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]

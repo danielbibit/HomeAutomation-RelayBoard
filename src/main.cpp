@@ -45,6 +45,7 @@ void setup() {
 
     mySerial.println(generate_status());
     debug("Alive!");
+    Serial.println(generate_status());
 }
 
 void loop() {
@@ -92,7 +93,7 @@ String generate_status(){
     String string = "0;board;status;"; //VAR
 
     for(int i = 0; i < 4; i++){
-        string.concat(states[i]);
+        string.concat(states[i] == 0 ? "off" : "on");
         string.concat(i == 3 ? "" : ",");
     }
 
